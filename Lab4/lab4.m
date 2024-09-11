@@ -25,9 +25,10 @@ hold on
 stairs(out.y_d.Time, out.y_d.Data, 'r')
 title('Saída contínuo e discreto')
 xlabel('Tempo (s)')
-ylabel('Amplitude')
+ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
+saveas(gcf, "saida-planta1.png");
 
 figure
 plot(out.e_c.Time , out.e_c.Data, 'b')
@@ -35,9 +36,10 @@ hold on
 stairs(out.e_d.Time, out.e_d.Data, 'r')
 title('Erro contínuo e discreto')
 xlabel('Tempo (s)')
-ylabel('Amplitude')
+ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
+saveas(gcf, "erro-planta1.png");
 
 figure
 plot(out.u_c.Time , out.u_c.Data, 'b')
@@ -45,6 +47,7 @@ hold on
 stairs(out.u_d.Time, out.u_d.Data, 'r')
 title('Disturbio contínuo e discreto')
 xlabel('Tempo (s)')
-ylabel('Amplitude')
+ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
+saveas(gcf, "disturbio-planta1.png");

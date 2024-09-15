@@ -60,3 +60,10 @@ legend('Contínuo', 'Discreto')
 grid on
 %saveas(gcf, "imagens/disturbio-planta1.png");
 
+%% locus
+figure;
+rlocus(G);
+title('Lugar das raízes do sistema com controlador proporcional');
+xlabel('Eixo real');
+ylabel('Eixo imaginário');
+%saveas(gcf, "imagens/rlocus-planta1.png")

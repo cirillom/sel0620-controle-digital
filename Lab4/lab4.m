@@ -1,3 +1,4 @@
+%% values
 zeta = 1.012;
 wn = 0.875;
 R = 1.18;
@@ -16,8 +17,15 @@ Gz = c2d(G, T0, 'zoh');
 z = zero(Gz);
 p = pole(Gz);
 
-[num, den] = tfdata(G, 'v')
+[num, den] = tfdata(G, 'v');
 
+%% simulink
+model = 'ambasMalhas';
+load_system(model);
+set_param(model, 'StopTime', '30');
+out = sim(model)
+save_system(model);
+close_system(model);
 
 figure
 plot(out.y_c.Time , out.y_c.Data, 'b')
@@ -28,7 +36,7 @@ xlabel('Tempo (s)')
 ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
-saveas(gcf, "saida-planta1.png");
+%saveas(gcf, "imagens/saida-planta1.png");
 
 figure
 plot(out.e_c.Time , out.e_c.Data, 'b')
@@ -39,7 +47,7 @@ xlabel('Tempo (s)')
 ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
-saveas(gcf, "erro-planta1.png");
+%saveas(gcf, "imagens/erro-planta1.png");
 
 figure
 plot(out.u_c.Time , out.u_c.Data, 'b')
@@ -50,4 +58,5 @@ xlabel('Tempo (s)')
 ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
-saveas(gcf, "disturbio-planta1.png");
+%saveas(gcf, "imagens/disturbio-planta1.png");
+

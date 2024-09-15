@@ -67,3 +67,10 @@ title('Lugar das raízes do sistema com controlador proporcional');
 xlabel('Eixo real');
 ylabel('Eixo imaginário');
 %saveas(gcf, "imagens/rlocus-planta1.png")
+
+%% bode
+figure
+bode(G)
+margin(G)
+title('Diagrama de bode com margem de ganho')
+saveas(gcf, "imagens/bodeMargin-planta1.png")

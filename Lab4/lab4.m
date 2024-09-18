@@ -3,6 +3,8 @@ zeta = 1.012;
 wn = 0.875;
 R = 1.18;
 disturbio = 0.24;
+Kp = 1;
+
 G = tf(wn^2, [1 2*zeta*wn wn^2]); % Funcao de Transferencia
 wb = bandwidth(G);
 fb = wb/(2*pi);
@@ -74,3 +76,23 @@ bode(G)
 margin(G)
 title('Diagrama de bode com margem de ganho')
 saveas(gcf, "imagens/bodeMargin-planta1.png")
+
+%% malha fechada
+Gmf = feedback(Kp*G, 1);
+Gmfz = feedback(Kp*Gz , 1);
+
+pgmf = pole(Gmf);
+zgmf = zero(Gmf);
+pgmfz = pole(Gmfz);
+zgmfz = zero(Gmfz);
+
+figure
+step(R*Gmf)
+hold on
+step(R*Gmfz)
+title('Saída sistema de malha fechada')
+xlabel('Tempo (s)')
+ylabel('Tensão (v)')
+legend('Contínuo', 'Discreto')
+grid on
+saveas(gcf, "imagens/saida-malhafechada.png");

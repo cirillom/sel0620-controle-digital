@@ -78,6 +78,7 @@ title('Diagrama de bode com margem de ganho')
 saveas(gcf, "imagens/bodeMargin-planta1.png")
 
 %% malha fechada
+Kp = 8;
 Gmf = feedback(Kp*G, 1);
 Gmfz = feedback(Kp*Gz , 1);
 
@@ -90,9 +91,29 @@ figure
 step(R*Gmf)
 hold on
 step(R*Gmfz)
-title('Saída sistema de malha fechada')
+title(sprintf('Saída sistema de malha fechada com Kp = %d', Kp));
 xlabel('Tempo (s)')
 ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
-saveas(gcf, "imagens/saida-malhafechada.png");
+saveas(gcf, sprintf("imagens/saida_kp%d-malhafechada.png", Kp));
+
+%% correção discretização
+Kp = 5;
+new_F0 = 56*fb;    % Frequencia de amostragem in Hz
+new_T0 = 1/new_F0    % Periodo de amostragem em segundos
+
+Gmf = feedback(Kp*G, 1);
+new_Gz = c2d(G, new_T0, 'zoh')
+new_Gmfz = feedback(Kp*new_Gz , 1);
+
+figure
+step(R*Gmf)
+hold on
+step(R*new_Gmfz)
+title(sprintf('Saída sistema de malha fechada corrigido com Kp = %d', Kp));
+xlabel('Tempo (s)')
+ylabel('Tensão (v)')
+legend('Contínuo', 'Discreto')
+grid on
+saveas(gcf, sprintf("imagens/saida_kp%d-malhafechadacorrigido.png", Kp));

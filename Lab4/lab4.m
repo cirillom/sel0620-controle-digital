@@ -99,21 +99,30 @@ grid on
 saveas(gcf, sprintf("imagens/saida_kp%d-malhafechada.png", Kp));
 
 %% correção discretização
-Kp = 5;
+Kp = 7.3333;
 new_F0 = 56*fb;    % Frequencia de amostragem in Hz
-new_T0 = 1/new_F0    % Periodo de amostragem em segundos
+new_T0 = 1/new_F0;    % Periodo de amostragem em segundos
 
 Gmf = feedback(Kp*G, 1);
-new_Gz = c2d(G, new_T0, 'zoh')
+new_Gz = c2d(G, new_T0, 'zoh');
 new_Gmfz = feedback(Kp*new_Gz , 1);
 
+%% figura discretização corrigida
 figure
 step(R*Gmf)
 hold on
 step(R*new_Gmfz)
-title(sprintf('Saída sistema de malha fechada corrigido com Kp = %d', Kp));
+title(sprintf('Saída sistema de malha fechada corrigido com Kp = %.4f', Kp));
 xlabel('Tempo (s)')
 ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
-saveas(gcf, sprintf("imagens/saida_kp%d-malhafechadacorrigido.png", Kp));
+saveas(gcf, sprintf("imagens/saida_kp%.4f-malhafechadacorrigido.png", Kp));
+
+%% tempo de subida e descida
+info = stepinfo(new_Gmfz);
+
+% Exibir o tempo de subida e tempo de acomodação
+fprintf("\n Kp = %d:\n", Kp)
+fprintf('Tempo de subida: %.4f segundos\n', info.RiseTime);
+fprintf('Tempo de acomodação (2%%): %.4f segundos\n', info.SettlingTime);

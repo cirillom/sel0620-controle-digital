@@ -45,7 +45,7 @@ xlabel('Tempo (s)')
 ylabel('Tensão (v)')
 legend('Contínuo', 'Discreto')
 grid on
-%saveas(gcf, "imagens/saida-planta1.png");
+saveas(gcf, "imagens/saida-planta1.png");
 
 figure
 plot(out.x_c.Time , out.x_c.Data, 'b')
@@ -56,4 +56,4 @@ xlabel('Tempo (s)')
 ylabel('Amplitude')
 legend('Contínuo x1', 'Contínuo x2', 'Discreto x1', 'Discreto x2')
 grid on
-%saveas(gcf, "imagens/estados-planta1.png");
+saveas(gcf, "imagens/estados-planta1.png");

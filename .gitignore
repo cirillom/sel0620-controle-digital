@@ -1,0 +1,53 @@
+# MATLAB specific files
+*.m~
+*.asv
+*.autosave
+*.fig
+*.mex*
+*.mltbx
+*.p
+*.mdlp
+*.slxp
+*.mlappinstall
+*.mlpkginstall
+
+# Simulink specific files
+*.slxc
+*.slx.autosave
+*.slx.recovery
+*.mdl.autosave
+*.mdl.recovery
+
+# Backup and autosave files
+**/slprj/
+**/codegen/
+*.log
+*.out
+
+# Project and settings files
+*.prj
+*.project
+
+# MATLAB App Designer
+*.mlapp
+
+# Simulink cache and build files
+*.mexw64
+*.mexmaci64
+*.mexglx
+
+# Simulink generated files
+*.mexa64
+
+# User-specific files
+*.user
+*.sldd.autosave
+
+# Compiled MATLAB files
+*.mex*
+
+# Ignore directories related to packaging
+packaging/
+
+# MATLAB toolboxes
+toolbox/

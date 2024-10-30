@@ -42,25 +42,35 @@ save_system(model);
 close_system(model);
 
 figure
-stairs(out.controle.Time , out.controle.Data, 'b')
-title('Ação de controle do sistema de malha fechada para T0 = 0.51')
+stairs(out.controle.Time , out.controle.Data, 'r')
+title('Ação de controle do sistema de malha fechada para T0 = 0,51')
 xlabel('Tempo (s)')
 ylabel('Tensão (V)')
 grid on
 
 figure
-stairs(out.saida.Time , out.saida.Data, 'b')
-title('Resposta do sistema de malha fechada para T0 = 0.51')
+stairs(out.saida.Time , out.saida.Data, 'r')
+title('Resposta do sistema de malha fechada para T0 = 0,51')
 xlabel('Tempo (s)')
 ylabel('Tensão (V)')
 grid on
 
 figure
-stairs(out.erro.Time , out.erro.Data, 'b')
-title('Erro do sistema de malha fechada para T0 = 0.51')
+stairs(out.erro.Time , out.erro.Data, 'r')
+title('Erro do sistema de malha fechada para T0 = 0,51')
 xlabel('Tempo (s)')
 ylabel('Tensão (V)')
 grid on
+
+info = stepinfo(out.saida.Data, out.saida.Time);
+
+fprintf('  Tempo de Acomodação (t_s): %.4f s\n', info.SettlingTime);
+
+fprintf('  Tempo de Subida (t_r): %.4f s\n', info.RiseTime);
+
+fprintf('  Tempo de Pico (t_p): %.4f s\n', info.PeakTime);
+
+fprintf('  Sobressinal (M_p): %.2f %%\n', info.Overshoot);
 
 
 

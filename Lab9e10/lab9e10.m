@@ -4,7 +4,7 @@ wn = 0.875;
 R = 1.18;
 disturbio = 0.24;
 tempo_disturbio = 15;
-T0 = 0.51;
+T0 = 0.51*1.33;
 
 %funçao de transferencia
 G = tf(wn^2, [1 2*zeta*wn wn^2]);
@@ -43,21 +43,21 @@ close_system(model);
 
 figure
 stairs(out.controle.Time , out.controle.Data, 'r')
-title('Ação de controle do sistema de malha fechada para T0 = 0,51')
+title('Ação de controle do sistema de malha fechada para T0 = 0,51  * 1,33')
 xlabel('Tempo (s)')
 ylabel('Tensão (V)')
 grid on
 
 figure
 stairs(out.saida.Time , out.saida.Data, 'r')
-title('Resposta do sistema de malha fechada para T0 = 0,51')
+title('Resposta do sistema de malha fechada para T0 = 0,51  * 1,33')
 xlabel('Tempo (s)')
 ylabel('Tensão (V)')
 grid on
 
 figure
 stairs(out.erro.Time , out.erro.Data, 'r')
-title('Erro do sistema de malha fechada para T0 = 0,51')
+title('Erro do sistema de malha fechada para T0 = 0,51 * 1,33')
 xlabel('Tempo (s)')
 ylabel('Tensão (V)')
 grid on

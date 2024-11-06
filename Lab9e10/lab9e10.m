@@ -41,26 +41,26 @@ out = sim(model);
 save_system(model);
 close_system(model);
 
-figure
-stairs(out.controle.Time , out.controle.Data, 'r')
-title('Ação de controle do sistema de malha fechada para T0 = 0,51  * 1,33')
-xlabel('Tempo (s)')
-ylabel('Tensão (V)')
-grid on
-
-figure
-stairs(out.saida.Time , out.saida.Data, 'r')
-title('Resposta do sistema de malha fechada para T0 = 0,51  * 1,33')
-xlabel('Tempo (s)')
-ylabel('Tensão (V)')
-grid on
-
-figure
-stairs(out.erro.Time , out.erro.Data, 'r')
-title('Erro do sistema de malha fechada para T0 = 0,51 * 1,33')
-xlabel('Tempo (s)')
-ylabel('Tensão (V)')
-grid on
+% figure
+% stairs(out.controle.Time , out.controle.Data, 'r')
+% title('Ação de controle do sistema de malha fechada para T0 = 0,51  * 1,33')
+% xlabel('Tempo (s)')
+% ylabel('Tensão (V)')
+% grid on
+% 
+% figure
+% stairs(out.saida.Time , out.saida.Data, 'r')
+% title('Resposta do sistema de malha fechada para T0 = 0,51  * 1,33')
+% xlabel('Tempo (s)')
+% ylabel('Tensão (V)')
+% grid on
+% 
+% figure
+% stairs(out.erro.Time , out.erro.Data, 'r')
+% title('Erro do sistema de malha fechada para T0 = 0,51 * 1,33')
+% xlabel('Tempo (s)')
+% ylabel('Tensão (V)')
+% grid on
 
 info = stepinfo(out.saida.Data, out.saida.Time);
 

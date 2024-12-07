@@ -26,3 +26,28 @@ L = Lt'
 
 sys  = ss(F-L*Cd, H, Cd, Dd, T0); % Test if things are working as it should
 pole(sys)
+
+out = sim('observer', 'StartTime', '0', 'StopTime', '24');
+
+%% imagens
+
+figure
+hold on
+stairs(out.x_dhat.Time, out.x_dhat.Data)
+stairs(out.x_d.Time, out.x_d.Data)
+title(['Estados discretos'])
+xlabel('Tempo (t)')
+ylabel('Estado')
+legend('xobs_1', 'xobs_2', 'x_1', 'x_2')
+hold off
+
+
+figure
+hold on
+stairs(out.y_dhat.Time, out.y_dhat.Data)
+stairs(out.y_d.Time, out.y_d.Data)
+title(['Saida do sistema'])
+xlabel('Tempo (t)')
+ylabel('y(t)')
+legend('yobs', 'y')
+hold off

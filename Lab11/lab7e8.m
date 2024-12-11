@@ -7,12 +7,27 @@ disturbio = 0.24;
 tempo_disturbio = 15;
 Kp = 1;
 
+% zeta = 1.011; %HUGO
+% wn = 1.045; %HUGO
+% R = 1.25; %HUGO
+% disturbio = 0.24; %HUGO
+% Kp = 1; %HUGO
+
 %funçao de transferencia
 G = tf(wn^2, [1 2*zeta*wn wn^2]); % Funcao de Transferencia
 
 [Gnum,Gden] = tfdata(G, 'v');
 
-T0 = 0.203    % Periodo de amostragem em segundos
+wb = bandwidth(G);
+fb = wb/(2*pi);
+
+%configuracao da discretizacao
+Fc = 10000;    % Ferquencia de amostragem em Hz  
+T = 15; % Tempo final da simula??o
+F0 = 56*fb;    % Frequencia de amostragem in Hz
+W0 = F0*2*pi;
+T0 = 1/F0    % Periodo de amostragem em segundos
+% T0 = 0.201; %HUGO
 
 %discretizacao da funcao de transferencia
 Gz = c2d(G, T0, 'zoh');
@@ -55,7 +70,7 @@ disp(p.');
 
 
 
-%% simulink
+%%simulink
 
 model = 'pidsimulink';
 load_system(model);

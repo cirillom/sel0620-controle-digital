@@ -19,14 +19,14 @@ z = zero(Gz);
 p = pole(Gz);
 
 [num, den] = tfdata(G, 'v');
-[Ac, Bc, Cc, Dc] = tf2ss(num, den); % Matrizes de estado do sistema contínuo
+[Ac, Bc, Cc, Dc] = tf2ss(num, den)
 
 ss_c = ss(Ac, Bc, Cc, Dc);
 ss_d = c2d(ss_c, T0);
-F = ss_d.A;
-H = ss_d.B;
-Cd = ss_d.C;
-Dd = ss_d.D;
+F = ss_d.A
+H = ss_d.B
+Cd = ss_d.C
+Dd = ss_d.D
 
 %% simulink
 model = 'ambasMalhas';
